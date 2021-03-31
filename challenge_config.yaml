@@ -19,8 +19,8 @@ leaderboard:
   - id: 1
     schema:
       {
-        "labels": ["Active Power MSE", "Reactive Power MSE", "Voltage MSE", "Global Intensity MSE", "Sub_metering_1 MSE", "Sub_metering_2 MSE", "Sub_metering_3 MSE", "Overall MSE"],
-        "default_order_by": "Overall MSE",
+        "labels": ["MSE"],
+        "default_order_by": "MSE",
       }
 
 challenge_phases:
