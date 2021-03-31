@@ -44,6 +44,7 @@ def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwarg
     user_data = pd.read_csv(user_submission_file)
     #TODO : ajouter contrôles fichier et son contenu
 
+    # dev phase scores 
     # score_active_power = mean_squared_error(test_data.Global_active_power  ,user_data.Global_active_power)
     # score_reactive_power = mean_squared_error(test_data.Global_reactive_power  ,user_data.Global_reactive_power)
     # score_voltage = mean_squared_error(test_data.Voltage  ,user_data.Voltage)
@@ -62,7 +63,6 @@ def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwarg
     # ])
 
     score = mean_squared_error(test_data.Voltage  ,user_data.Voltage)
-
 
     output = {}
     print("Evaluating for Dev Phase")
