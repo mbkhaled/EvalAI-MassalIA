@@ -41,7 +41,7 @@ def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwarg
     """
 
     test_data = pd.read_csv(test_annotation_file)
-    user_data = pd.read_csv(user_annotation_file)
+    user_data = pd.read_csv(user_submission_file)
     #TODO : ajouter contrôles fichier et son contenu
 
     # dev phase scores 
