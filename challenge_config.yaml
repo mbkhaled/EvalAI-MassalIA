@@ -19,7 +19,7 @@ leaderboard:
   - id: 1
     schema:
       {
-        "labels": ["MSE"],
+        "labels": ["R2","MSE"],
         "default_order_by": "MSE",
       }
 

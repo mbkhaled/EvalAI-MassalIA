@@ -1,6 +1,7 @@
 import pandas as pd 
 import numpy as np
 from sklearn.metrics import mean_squared_error
+from sklearn.metrics import r2_score
 
 def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwargs):
     """
@@ -44,51 +45,23 @@ def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwarg
     user_data = pd.read_csv(user_submission_file)
     #TODO : ajouter contrôles fichier et son contenu
 
-    # dev phase scores 
-    # score_active_power = mean_squared_error(test_data.Global_active_power  ,user_data.Global_active_power)
-    # score_reactive_power = mean_squared_error(test_data.Global_reactive_power  ,user_data.Global_reactive_power)
-    # score_voltage = mean_squared_error(test_data.Voltage  ,user_data.Voltage)
-    # score_intensity = mean_squared_error(test_data.Global_intensity  ,user_data.Global_intensity)
-    # score_sub_metering_1 = mean_squared_error(test_data.Sub_metering_1  ,user_data.Sub_metering_1)
-    # score_sub_metering_2 = mean_squared_error(test_data.Sub_metering_2  ,user_data.Sub_metering_3)
-    # score_sub_metering_3 = mean_squared_error(test_data.Sub_metering_2  ,user_data.Sub_metering_3)
-    # score_overall = np.mean([
-    #     score_active_power,
-    #     score_reactive_power,
-    #     score_voltage,
-    #     score_intensity,
-    #     score_sub_metering_1,
-    #     score_sub_metering_2,
-    #     score_sub_metering_3
-    # ])
-
     score = mean_squared_error(test_data.Voltage  ,user_data.Voltage)
+    r2 = r2_score(test_data.Voltage  ,user_data.Voltage)
 
     output = {}
     print("Evaluating for Dev Phase")
 
-    # output["result"] = [
-    #     {
-    #         "train_split": {
-    #             "Active Power MSE": score_active_power,
-    #             "Reactive Power MSE": score_reactive_power,
-    #             "Voltage MSE": score_voltage,
-    #             "Global Intensity MSE": score_intensity,
-    #             "Sub_metering_1 MSE": score_sub_metering_1,
-    #             "Sub_metering_2 MSE": score_sub_metering_2,
-    #             "Sub_metering_3 MSE": score_sub_metering_3,
-    #             "Overall MSE": score_overall,
-    #         }
-    #     }
-    # ]
     output["result"] = [
         {
             "train_split": {
                 "MSE": score
+                "R2": r2
             }
         }
     ]
     # To display the results in the result file
+    print("le MSE pour cette soumission est : ",score)
+    print("le R2  est : ",r2)
     output["submission_result"] = output["result"][0]["train_split"]
     print("Completed evaluation")
 
