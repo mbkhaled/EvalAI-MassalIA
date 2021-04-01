@@ -34,7 +34,7 @@ challenge_phases:
     end_date: 2021-06-15 23:59:59
     test_annotation_file: annotations/test_data_devsplit.csv
     codename: dev
-    max_submissions_per_day: 5
+    max_submissions_per_day: 50
     max_submissions_per_month: 50
     max_submissions: 50
     default_submission_meta_attributes:
