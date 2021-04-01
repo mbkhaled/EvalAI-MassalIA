@@ -50,9 +50,6 @@ dataset_splits:
   - id: 1
     name: Train Split
     codename: train_split
-  - id: 2
-    name: Test Split
-    codename: test_split
 
 challenge_phase_splits:
   - challenge_phase_id: 1
