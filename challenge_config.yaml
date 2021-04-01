@@ -11,7 +11,7 @@ leaderboard_description: "L'evaluation est faite au moyen du MSE"
 evaluation_script: evaluation_script.zip
 remote_evaluation: False
 is_docker_based: False
-start_date: 2021-06-01 00:00:00
+start_date: 2021-04-01 00:00:00
 end_date: 2021-06-30 23:59:59
 published: False
 
@@ -30,7 +30,7 @@ challenge_phases:
     leaderboard_public: True
     is_public: True
     is_submission_public: False
-    start_date: 2021-06-01 00:00:00
+    start_date: 2021-04-01 00:10:00
     end_date: 2021-06-15 23:59:59
     test_annotation_file: annotations/test_data_devsplit.csv
     codename: dev
