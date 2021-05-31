@@ -11,8 +11,8 @@ leaderboard_description: "L'evaluation est faite au moyen du MSE"
 evaluation_script: "evaluation_script.zip"
 remote_evaluation: False
 is_docker_based: False
-start_date: 2021-04-01 00:00:00
-end_date: 2021-06-30 23:59:59
+start_date: 2021-10-01 00:00:00
+end_date: 2021-11-03 23:59:59
 published: False
 
 leaderboard:
