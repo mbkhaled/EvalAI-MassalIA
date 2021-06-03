@@ -1,6 +1,6 @@
 # If you are not sure what all these fields mean, please refer our documentation here:
 # https://evalai.readthedocs.io/en/latest/configuration.html
-title: MassalIA - hidden
+title: MassalIA
 short_description: Challenge IA destiné aux étudiants Marseillais
 description: templates/description.html
 evaluation_details: templates/evaluation_details.html
