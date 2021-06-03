@@ -1,10 +1,11 @@
-import random
-
+import pandas as pd 
+import numpy as np
+from sklearn.metrics import mean_squared_error
+from sklearn.metrics import r2_score
 
 def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwargs):
-    print("Starting Evaluation.....")
     """
-    Evaluates the submission for a particular challenge phase and returns score
+    Evaluates the submission for a particular challenge phase adn returns score
     Arguments:
 
         `test_annotations_file`: Path to test_annotation_file on the server
@@ -23,7 +24,7 @@ def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwarg
             'when_made_public': None,
             'participant_team': 5,
             'input_file': 'https://abc.xyz/path/to/submission/file.json',
-            'execution_time': u'123',
+            execution_time': u'123',
             'publication_url': u'ABC',
             'challenge_phase': 1,
             'created_by': u'ABC',
@@ -39,43 +40,30 @@ def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwarg
             'submitted_at': u'2017-03-20T19:22:03.880652Z'
         }
     """
+
+    test_data = pd.read_csv(test_annotation_file)
+    user_data = pd.read_csv(user_submission_file)
+    #TODO : ajouter contrôles fichier et son contenu
+
+    score = mean_squared_error(test_data.Voltage  ,user_data.Voltage)
+    r2 = r2_score(test_data.Voltage  ,user_data.Voltage)
+
     output = {}
-    if phase_codename == "dev":
-        print("Evaluating for Dev Phase")
-        output["result"] = [
-            {
-                "train_split": {
-                    "Metric1": random.randint(0, 99),
-                    "Metric2": random.randint(0, 99),
-                    "Metric3": random.randint(0, 99),
-                    "Total": random.randint(0, 99),
-                }
+    print("Evaluating for Dev Phase")
+
+    output["result"] = [
+        {
+            "train_split": {
+                "MSE": score,
+                "R2": r2
             }
-        ]
-        # To display the results in the result file
-        output["submission_result"] = output["result"][0]["train_split"]
-        print("Completed evaluation for Dev Phase")
-    elif phase_codename == "test":
-        print("Evaluating for Test Phase")
-        output["result"] = [
-            {
-                "train_split": {
-                    "Metric1": random.randint(0, 99),
-                    "Metric2": random.randint(0, 99),
-                    "Metric3": random.randint(0, 99),
-                    "Total": random.randint(0, 99),
-                }
-            },
-            {
-                "test_split": {
-                    "Metric1": random.randint(0, 99),
-                    "Metric2": random.randint(0, 99),
-                    "Metric3": random.randint(0, 99),
-                    "Total": random.randint(0, 99),
-                }
-            },
-        ]
-        # To display the results in the result file
-        output["submission_result"] = output["result"][0]
-        print("Completed evaluation for Test Phase")
+        }
+    ]
+    # To display the results in the result file
+    print("le MSE pour cette soumission est : ",score)
+    print("le R2  est : ",r2)
+    output["submission_result"] = output["result"][0]["train_split"]
+    print("Completed evaluation")
+
     return output
+
