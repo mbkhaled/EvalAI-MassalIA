@@ -1,6 +1,6 @@
 # If you are not sure what all these fields mean, please refer our documentation here:
 # https://evalai.readthedocs.io/en/latest/configuration.html
-title: MassalIA-hidden
+title: MassalIA
 short_description: Challenge IA destiné aux étudiants Marseillais
 description: templates/description.html
 evaluation_details: templates/evaluation_details.html
@@ -12,7 +12,7 @@ evaluation_script: "evaluation_script.zip"
 remote_evaluation: False
 is_docker_based: False
 start_date: 2021-10-01 09:00:00
-end_date: 2021-11-05 23:59:59
+end_date: 2021-11-10 23:59:59
 published: False
 
 leaderboard:
