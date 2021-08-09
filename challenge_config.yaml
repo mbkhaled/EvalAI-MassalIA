@@ -25,13 +25,34 @@ leaderboard:
 
 challenge_phases:
   - id: 1
-    name: Dev Phase
+    name: Détection d'antennes
     description: templates/challenge_phase_1_description.html
     leaderboard_public: True
     is_public: True
     is_submission_public: False
     start_date: 2021-04-01 00:10:00
     end_date: 2021-06-15 23:59:59
+    test_annotation_file: annotations/test_data_devsplit.csv
+    codename: dev
+    max_submissions_per_day: 50
+    max_submissions_per_month: 50
+    max_submissions: 50
+    default_submission_meta_attributes:
+      - name: method_name
+        is_visible: True
+      - name: method_description
+        is_visible: True
+    is_restricted_to_select_one_submission: False
+    is_partial_submission_evaluation_enabled: False
+    allowed_submission_file_types: ".csv"
+  - id: 2
+    name: Détection de batiments, d'arbres ...
+    description: templates/challenge_phase_2_description.html
+    leaderboard_public: True
+    is_public: True
+    is_submission_public: False
+    start_date: 2021-07-01 00:10:00
+    end_date: 2021-08-15 23:59:59
     test_annotation_file: annotations/test_data_devsplit.csv
     codename: dev
     max_submissions_per_day: 50
