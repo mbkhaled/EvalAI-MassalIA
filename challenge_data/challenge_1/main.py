@@ -1,6 +1,6 @@
-import pandas as pd 
+import csv
 import numpy as np
-from sklearn.metrics import mean_squared_error
+from mean_average_precision import MetricBuilder
 
 def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwargs):
     """
@@ -39,57 +39,42 @@ def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwarg
             'submitted_at': u'2017-03-20T19:22:03.880652Z'
         }
     """
+    pred_boxes = dict()
+    with open(user_submission_file, newline='') as csvfile:
+        predictions = csv.reader(csvfile, delimiter=',')
+        next(predictions)
+        for row in predictions:
+            l = pred_boxes.get(row[0], list())
+            l.append(row[1:])
+            pred_boxes[row[0]] = l
 
-    test_data = pd.read_csv(test_annotation_file)
-    user_data = pd.read_csv(user_submission_file)
-    #TODO : ajouter contrôles fichier et son contenu
+    true_boxes = dict()
+    with open(test_annotation_file, newline='') as csvfile:
+        test = csv.reader(csvfile, delimiter=',')
+        next(test)
+        for row in test:
+            l = true_boxes.get(row[0], list())
+            l.append(row[1:]+[0,0,0])
+            true_boxes[row[0]] = l
 
-    # dev phase scores 
-    # score_active_power = mean_squared_error(test_data.Global_active_power  ,user_data.Global_active_power)
-    # score_reactive_power = mean_squared_error(test_data.Global_reactive_power  ,user_data.Global_reactive_power)
-    # score_voltage = mean_squared_error(test_data.Voltage  ,user_data.Voltage)
-    # score_intensity = mean_squared_error(test_data.Global_intensity  ,user_data.Global_intensity)
-    # score_sub_metering_1 = mean_squared_error(test_data.Sub_metering_1  ,user_data.Sub_metering_1)
-    # score_sub_metering_2 = mean_squared_error(test_data.Sub_metering_2  ,user_data.Sub_metering_3)
-    # score_sub_metering_3 = mean_squared_error(test_data.Sub_metering_2  ,user_data.Sub_metering_3)
-    # score_overall = np.mean([
-    #     score_active_power,
-    #     score_reactive_power,
-    #     score_voltage,
-    #     score_intensity,
-    #     score_sub_metering_1,
-    #     score_sub_metering_2,
-    #     score_sub_metering_3
-    # ])
-
-    score = mean_squared_error(test_data.Voltage  ,user_data.Voltage)
+    metric_fn = MetricBuilder.build_evaluation_metric('map_2d', async_mode=True, num_classes=1)
+    for img in pred_boxes:
+        metric_fn.add(np.array(pred_boxes[img]).astype(float), np.array(true_boxes[img]).astype(float))
+    score = metric_fn.value(iou_thresholds=0.5)['mAP']
 
     output = {}
-    print("Evaluating for Dev Phase")
+    print("Evaluating for Antenna Detection Phase")
 
-    # output["result"] = [
-    #     {
-    #         "train_split": {
-    #             "Active Power MSE": score_active_power,
-    #             "Reactive Power MSE": score_reactive_power,
-    #             "Voltage MSE": score_voltage,
-    #             "Global Intensity MSE": score_intensity,
-    #             "Sub_metering_1 MSE": score_sub_metering_1,
-    #             "Sub_metering_2 MSE": score_sub_metering_2,
-    #             "Sub_metering_3 MSE": score_sub_metering_3,
-    #             "Overall MSE": score_overall,
-    #         }
-    #     }
-    # ]
     output["result"] = [
         {
-            "train_split": {
-                "MSE": score
+            "train_antenna": {
+                "mAP": score,
             }
         }
     ]
     # To display the results in the result file
-    output["submission_result"] = output["result"][0]["train_split"]
+    print("la mAP pour cette soumission est : ",score)
+    output["submission_result"] = output["result"][0]["train_antenna"]
     print("Completed evaluation")
 
     return output
