@@ -53,7 +53,6 @@
 Félicitations, vous êtes inscrits au rallye !
 Vous pouvez maintenant vous rendre sur l'onglet "Evalutation" ou cliquez ici <a href="https://eval.ai/web/challenges/challenge-page/1061/evaluation">Évaluation</a> afin de lire la présentation du sujet ainsi que le règlement.
 
-<h3 style="text-align:center">Description de la compétition</h3>
 
 <div style="text-align: center;">
     <h3 style="text-align:center">Description de la compétition</h3>
@@ -66,31 +65,41 @@ Vous pouvez maintenant vous rendre sur l'onglet "Evalutation" ou cliquez ici <a 
             Pour 2040 : Devenir Net Zéro Carbone.
         </li>
     </ul>
-    Dans ce contexte, il est dans l'intérêt d'Orange de rendre plus verte la production d'énergie au niveau des sites mobiles de toute la France. 
-    Pour cela, il faut localiser les sites mobiles Orange sur toute la France et déterminer si le site est solarisable (=possibilité d'installer des panneaux solaires).
-    La compétition proposée vise dans un premier temps à détecter différents objets sur une image satellite et dans un second temps de décider si le site mobile est solarisable.
+    Dans ce contexte, il est dans l'intérêt d'Orange de rendre plus verte la production d'énergie au niveau des sites mobiles de toute la France. </br>
+    Pour cela, il faut localiser les sites mobiles Orange sur toute la France et déterminer si le site est solarisable (=possibilité d'installer des panneaux solaires).</br>
+    La compétition proposée vise dans un premier temps à détecter différents objets sur une image satellite et dans un second temps de décider si le site mobile est solarisable.</br>
 </div>
 
 
 <div style="text-align: center;">
-    <h3 style="text-align:center">Description des données mises à disposition du candidat</h3>
-    Les données mises à disposition au candidat se composent de 1200 images satellites des sites mobiles Orange et des annotations correspondantes aux bounding box locallisants les antennes.
-    Les images satellites sont au format PNG et les annotations au format CSV.
-    Les données ont téléchargeables à l'aide de ce lien : <a href="https://storage.googleapis.com/orange-massalia/images/test50.zip">DONNEES</a>
+    <h4><li>Description des données mises à disposition du candidat</li></h4>
+
+    <li>Les données mises à disposition au candidat se composent de 1200 images satellites des sites mobiles Orange et des annotations correspondantes aux bounding box locallisants les antennes.</br>
+    Les images satellites sont au format PNG et les annotations au format CSV.</br>
+    Les images labellisées ont été sélectionné sur toute la France, il y a donc une grande variété d'environnement et de forme d'antennes.</br>
+    </li>   
+
+    Les données sont téléchargeables à l'aide de ce lien : <a href="https://storage.googleapis.com/orange-massalia/images/test50.zip">DONNEES</a></br>
+
 </div>
 
 
 
 <div style="text-align: center;">
-    <h3 style="text-align:center">Phase 1 : Détection d'antennes sur des images satellites</h3>
-    Dans le cadre d'une première phase, le candidat aura pour objectif de détecter une antenne sur une image satellite. Sur une image, il peut y avoir plusieurs antennes.
-    Le candidat est libre d'utiliser toute méthode qui semble lui convenir pour résoudre cette phase. Il lui est toutefois conseillé d'utiliser des méthodes de Transfert Learning.
+    <h4><li>Phase 1 : Détection d'antennes sur des images satellites</li></h4>
+
+    <li>Dans le cadre d'une première phase, le candidat aura pour objectif de détecter une antenne sur une image satellite. Sur une image, il peut y avoir plusieurs antennes.</br>
+    Le candidat est libre d'utiliser toute méthode qui semble lui convenir pour résoudre cette phase. Il lui est toutefois conseillé d'utiliser des méthodes de Transfert Learning.</br>
+    </li>
+
+    <li>Afin d'évaluer le candidat, il est demandé un fichier CSV contenant les prédictions réalisées par le modèle utilisé par le candidat. Les modalités d'évaluation sont expliquées plus précisement dans l'onglet "Evaluation".
+    </li>
 </div>
 
 
 <div style="text-align: center;">
-    <h3 style="text-align:center">Phase 2 : Détection des arbres et des batiments sur des images satellites</h3>
-    Dans le cadre d'une seconde phase, le candidat aura pour objectif de détecter les obstacles environnant le site mobile sur une image satellite. Dans ce contexte, il sera demandé au candidat de détecter les abres et les batiments qui sont les principaux obstacles dans l'environnement d'une antenne.
-    Le candidat est libre d'utiliser toute méthode qui semble lui convenir pour résoudre cette phase. Il lui est toutefois conseillé d'utiliser des méthodes de Transfert Learning.
+    <h4><li>Phase 2 : Détection des arbres et des batiments sur des images satellites</li></h4>
+    Dans le cadre d'une seconde phase, le candidat aura pour objectif de détecter les obstacles environnant le site mobile sur une image satellite. Dans ce contexte, il sera demandé au candidat de détecter les abres et les batiments qui sont les principaux obstacles dans l'environnement d'une antenne.</br>
+    Le candidat est libre d'utiliser toute méthode qui semble lui convenir pour résoudre cette phase. Il lui est toutefois conseillé d'utiliser des méthodes de Transfert Learning.</br>)plmn,;
 </div>
 
