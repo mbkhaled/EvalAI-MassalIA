@@ -1,7 +1,6 @@
-import pandas as pd 
+import csv
 import numpy as np
-from sklearn.metrics import mean_squared_error
-from sklearn.metrics import r2_score
+from mean_average_precision import MetricBuilder
 
 def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwargs):
     """
@@ -40,29 +39,42 @@ def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwarg
             'submitted_at': u'2017-03-20T19:22:03.880652Z'
         }
     """
+    pred_boxes = dict()
+    with open(user_submission_file, newline='') as csvfile:
+        predictions = csv.reader(csvfile, delimiter=',')
+        next(predictions)
+        for row in predictions:
+            l = pred_boxes.get(row[0], list())
+            l.append(row[1:])
+            pred_boxes[row[0]] = l
 
-    test_data = pd.read_csv(test_annotation_file)
-    user_data = pd.read_csv(user_submission_file)
-    #TODO : ajouter contrôles fichier et son contenu
+    true_boxes = dict()
+    with open(test_annotation_file, newline='') as csvfile:
+        test = csv.reader(csvfile, delimiter=',')
+        next(test)
+        for row in test:
+            l = true_boxes.get(row[0], list())
+            l.append(row[1:]+[0,0,0])
+            true_boxes[row[0]] = l
 
-    score = mean_squared_error(test_data.Voltage  ,user_data.Voltage)
-    r2 = r2_score(test_data.Voltage  ,user_data.Voltage)
+    metric_fn = MetricBuilder.build_evaluation_metric('map_2d', async_mode=True, num_classes=1)
+    for img in pred_boxes:
+        metric_fn.add(np.array(pred_boxes[img]).astype(float), np.array(true_boxes[img]).astype(float))
+    score = metric_fn.value(iou_thresholds=0.5)['mAP']
 
     output = {}
-    print("Evaluating for Dev Phase")
+    print("Evaluating for Antenna Detection Phase")
 
     output["result"] = [
         {
-            "train_split": {
-                "MSE": score,
-                "R2": r2
+            "train_antenna": {
+                "mAP": score,
             }
         }
     ]
     # To display the results in the result file
-    print("le MSE pour cette soumission est : ",score)
-    print("le R2  est : ",r2)
-    output["submission_result"] = output["result"][0]["train_split"]
+    print("la mAP pour cette soumission est : ",score)
+    output["submission_result"] = output["result"][0]["train_antenna"]
     print("Completed evaluation")
 
     return output

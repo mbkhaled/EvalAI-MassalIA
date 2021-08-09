@@ -19,8 +19,8 @@ leaderboard:
   - id: 1
     schema:
       {
-        "labels": ["R2","MSE"],
-        "default_order_by": "MSE",
+        "labels": ["mAP"],
+        "default_order_by": "mAP",
       }
   - id: 2
     schema:
@@ -37,8 +37,8 @@ challenge_phases:
     is_public: True
     is_submission_public: False
     start_date: 2021-04-01 00:10:00
-    end_date: 2021-06-15 23:59:59
-    test_annotation_file: annotations/test_data_devsplit.csv
+    end_date: 2021-09-15 23:59:59
+    test_annotation_file: annotations/test_annotations.csv
     codename: dev
     max_submissions_per_day: 50
     max_submissions_per_month: 50
