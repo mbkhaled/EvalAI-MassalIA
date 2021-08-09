@@ -68,7 +68,7 @@ def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwarg
     output["result"] = [
         {
             "train_antenna": {
-                "mAP": score,
+                "mAP": str(score),
             }
         }
     ]
