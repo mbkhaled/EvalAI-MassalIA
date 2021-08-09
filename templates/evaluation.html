@@ -1,5 +1,45 @@
-<div>
-    <p>La première phase de la compétition étant une problématique de détection d'objets, 
-        la métrique utilisée pour évaluer les participants est la <b>AP</b> (Average Precision).</p>
-    <p>bla bla description de la métrique avec images...</p>
+<div style="text-align: center;">
+    <h4>Evaluation Phase 1 : Détection d'antenne sur des images satellites</h4>
+
+    <li>La métrique utilisée afin d'évaluer le candidat est l'AP (Average Precision). Cette métrique, largement utilisée pour évaluer des modèles de détection d'objets, est directement reliée à une autre métrique appelée l'IoU (Intersection Over Union).</br>
+    L'aspect mathématique de la métrique ne sera pas explicité ici, mais le candidat peut se renseigner de lui même pour mieux appréhender les problématiques d'évaluations de la compétition.
+    </li>   
+
+    <img src="https://storage.googleapis.com/orange-massalia/images/iou_equation.png" alt="guide 3" style="float:left;" width="300">
+    
+
+    <li>Il est demandé au candidat de soumettre les prédictions (bounding box prédites correspondant à la localisation des antennes) de son modèle au format CSV.</br>
+        Voici un exemple de ce à quoi le fichier des prédictions doit ressembler :
+    </li>
+
+    <table>
+        <tbody>
+            <tr>
+                <td>filename</td>
+                <td>xmin</td>
+                <td>ymin</td>
+                <td>xmax</td>
+                <td>ymax</td>
+            </tr>
+            <tr>
+                <td>aerial_image_00018586H3.png</td>
+                <td>178</td>
+                <td>339</td>
+                <td>200</td>
+                <td>363</td>
+            </tr>
+            <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <li>Chaque candidat a droit à plusieurs soumissions. C'est à dire qu'un candidat peut tenter plusieurs soumissions pour améliorer son score.</br>
+        Pour faire une soumission, le candidat soit se rendre à l'onglet "Submission".
+    </li>
+
 </div>
