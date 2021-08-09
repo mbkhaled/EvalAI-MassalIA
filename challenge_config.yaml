@@ -22,6 +22,12 @@ leaderboard:
         "labels": ["R2","MSE"],
         "default_order_by": "MSE",
       }
+  - id: 2
+    schema:
+      {
+        "labels": ["R2","MSE"],
+        "default_order_by": "MSE",
+      }
 
 challenge_phases:
   - id: 1
