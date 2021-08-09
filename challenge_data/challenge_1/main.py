@@ -61,6 +61,7 @@ def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwarg
     for img in pred_boxes:
         metric_fn.add(np.array(pred_boxes[img]).astype(float), np.array(true_boxes[img]).astype(float))
     score = metric_fn.value(iou_thresholds=0.5)['mAP']
+    score = int(score*100)
 
     output = {}
     print("Evaluating for Antenna Detection Phase")
