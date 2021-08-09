@@ -1,7 +1,7 @@
 #!/bin/bash
 # Remove already existing zip files
-rm evaluation_script.zip 
-rm challenge_config.zip
+# rm evaluation_script.zip 
+# rm challenge_config.zip
 
 # Create new zip configuration according the updated code
 cd evaluation_script
