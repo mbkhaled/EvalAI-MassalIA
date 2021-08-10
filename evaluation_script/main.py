@@ -62,7 +62,7 @@ def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwarg
         metric_fn.add(np.array(pred_boxes[img]).astype(float), np.array(true_boxes[img]).astype(float))
     score = metric_fn.value(iou_thresholds=0.5)['mAP']
     score = int(score*100)
-    
+
     output = {}
     print("Evaluating for Antenna Detection Phase")
 
@@ -75,7 +75,7 @@ def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwarg
     ]
     # To display the results in the result file
     print("la mAP pour cette soumission est : ",score)
-    output["submission_result"] = output["result"][0]
+    output["submission_result"] = output["result"][0]["train_antenna"]
     print("Completed evaluation")
 
     return output
