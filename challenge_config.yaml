@@ -39,9 +39,13 @@ challenge_phases:
     max_submissions: 50
     default_submission_meta_attributes:
       - name: method_name
-        is_visible: True
+        is_visible: False
       - name: method_description
-        is_visible: True
+        is_visible: False
+      - name: project_url
+        is_visible: False
+      - name: publication_url
+        is_visible: False
     is_restricted_to_select_one_submission: False
     is_partial_submission_evaluation_enabled: False
     allowed_submission_file_types: ".csv"
